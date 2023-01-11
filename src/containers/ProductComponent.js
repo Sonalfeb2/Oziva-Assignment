@@ -22,7 +22,7 @@ const ProductComponent = (props) => {
     }
     props.handleCartValue()
   };
-  const renderList = products.map((product) => {
+  const renderList = props.inputChange===""?products.map((product) => {
     const { id, title, image, price, category } = product;
     return (
       <>
@@ -53,7 +53,39 @@ const ProductComponent = (props) => {
       </div>
       </>
     );
-  });
+  }):products.map((product,index) => {
+    const { id, title, image, price, category } = product;
+    if(title.includes(props.inputChange)){
+    return (
+      <>
+      <div className="four wide column" key={index}>
+        
+          <div className="ui link cards">
+            <div className="card">
+              <div className="image">
+              <img src={image} alt={title} />
+              </div>
+              <div className="content">
+                <div className="header">{title}</div>
+                <div className="meta price">$ {price}</div>
+                <div className="meta">{category}</div>
+                
+                <button onClick={() => handleCart(product)}>
+                    <div className="ui vertical animated button" tabIndex="0">
+                      <div className="hidden content">
+                        <i className="shop icon" />
+                      </div>
+                      <div className="visible content">Add to Cart</div>
+                    </div>
+                  </button>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      </>
+    )};
+  })
   return <>
   {renderList}</>;
 };

@@ -22,7 +22,7 @@ const ProductPage = (props) => {
 
   return (
     <div className="ui grid container">
-      <ProductComponent handleCartValue={props.handleCartValue}/>
+      <ProductComponent handleCartValue={props.handleCartValue} inputChange={props.inputChange}/>
     </div>
     
   );

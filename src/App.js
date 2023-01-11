@@ -8,16 +8,21 @@ import CartDetails from "./containers/CartDetails";
 function App() {
   const cart =JSON.parse(localStorage.getItem("cart"))
   const[cartLength, setCartLength] = useState(cart?cart.length:[])
+  
+  const [inputChange, setInputChange] = useState("");
   const handleCartValue = () =>{
     setCartLength(JSON.parse(localStorage.getItem("cart")).length)
+  }
+  const handleInput = (e)=>{
+      setInputChange(e)
   }
   return (
     <div className="App">
       <Router>
-        <Header cartLength={cartLength}/>
+        <Header cartLength={cartLength} handleInput={handleInput}/>
         <Switch>
           <Route path="/" exact  >
-            <ProductListing handleCartValue={handleCartValue}/>
+            <ProductListing handleCartValue={handleCartValue} inputChange={inputChange}/>
             </Route>
           <Route path="/cart" component={CartDetails} />
           <Route>404 Not Found!</Route>
