@@ -5,20 +5,25 @@ const Header = ({ cartLength }) => {
   return (
     <div className="ui fixed menu">
       <div className="ui container center">
-       <Link to="/" ><h2>Oziva Shop</h2></Link>
+        <Link to="/">
+          <h2>Oziva Shop</h2>
+        </Link>
+      </div>
+      <div>
+        Search : <input  />
       </div>
       <Link to={`/cart`}>
         <div>
           <i
             className="shop icon"
-            style={{ margin: "2px 5.25rem 0 0", height: "2em" }}
+            style={{ margin: "2px 5.25rem 0 0" }}
           >
             <p>
               {cartLength}
             </p>
           </i>
         </div>
-        </Link>
+      </Link>
     </div>
   );
 };
