@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/actions/productsActions";
 import ProductComponent from "./ProductComponent";
 
-const ProductPage = () => {
+const ProductPage = (props) => {
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
   const fetchProducts = async () => {
@@ -20,10 +20,9 @@ const ProductPage = () => {
     fetchProducts();
   }, []);
 
-  console.log("Products :", products);
   return (
     <div className="ui grid container">
-      <ProductComponent />
+      <ProductComponent handleCartValue={props.handleCartValue}/>
     </div>
   );
 };

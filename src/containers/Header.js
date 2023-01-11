@@ -1,11 +1,24 @@
 import React from "react";
 
-const Header = () => {
+import { Link } from "react-router-dom";
+const Header = ({ cartLength }) => {
   return (
     <div className="ui fixed menu">
       <div className="ui container center">
-        <h2>FakeShop</h2>
+       <Link to="/" ><h2>Oziva Shop</h2></Link>
       </div>
+      <Link to={`/cart`}>
+        <div>
+          <i
+            className="shop icon"
+            style={{ margin: "2px 5.25rem 0 0", height: "2em" }}
+          >
+            <p>
+              {cartLength}
+            </p>
+          </i>
+        </div>
+        </Link>
     </div>
   );
 };

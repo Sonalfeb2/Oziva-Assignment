@@ -1,18 +1,25 @@
-import React from "react";
+import React,{useState} from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductListing from "./containers/ProductListing";
 import Header from "./containers/Header";
 import "./App.css";
-import ProductDetails from "./containers/ProductDetails";
+import CartDetails from "./containers/CartDetails";
 
 function App() {
+  const cart =JSON.parse(localStorage.getItem("cart"))
+  const[cartLength, setCartLength] = useState(cart?cart.length:[])
+  const handleCartValue = () =>{
+    setCartLength(JSON.parse(localStorage.getItem("cart")).length)
+  }
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header cartLength={cartLength}/>
         <Switch>
-          <Route path="/" exact component={ProductListing} />
-          <Route path="/product/:productId" component={ProductDetails} />
+          <Route path="/" exact  >
+            <ProductListing handleCartValue={handleCartValue}/>
+            </Route>
+          <Route path="/cart" component={CartDetails} />
           <Route>404 Not Found!</Route>
         </Switch>
       </Router>
