@@ -1,10 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
 import { useSelector } from "react-redux";
-
+import Pagination from "./Pagination"
 const ProductComponent = (props) => {
-  
   const products = useSelector((state) => state.allProducts.products);
+  const pages = products.length/10;
+  // useEffect(() => {
+  //   dispatch(pagination(response));
+  // }, []);
   const handleCart = product => {
     const cartData = JSON.parse(localStorage.getItem("cart"));
 
@@ -87,7 +89,11 @@ const ProductComponent = (props) => {
     )};
   })
   return <>
-  {renderList}</>;
+  {renderList}
+  <div>
+    <Pagination pages={pages}/>
+</div>
+  </>;
 };
 
 export default ProductComponent;
